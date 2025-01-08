@@ -13,7 +13,6 @@ class Tree {
     this.root = this.buildTree(array);
   }
   buildTree(array, start = 0, end = array.length - 1) {
-    console.log(array);
     if (start > end) return null;
     let mid = Math.floor((start + end) / 2);
     let root = new Node(array[mid]);
