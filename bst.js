@@ -21,22 +21,10 @@ class Tree {
     root.right = this.buildTree(array, mid + 1, end);
     return root;
   }
-
-  insert(root, data) {
-    if (root == null) return new Node(data);
-    if (root.data == data) return root;
-    if (data < root.data) {
-      root.left = this.insert(root.left, data);
-    } else if (data > root.data) {
-      root.right = this.insert(root.right, data);
-    }
-    return root;
-  }
 }
 
 let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 let node = bst.root;
-bst.insert(node, 100);
 
  const prettyPrint = (node, prefix = "", isLeft = true) => {
    if (node === null) {
