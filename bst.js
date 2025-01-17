@@ -31,6 +31,38 @@ class Tree {
     }
     return currNode;
   }
+
+  getSuccessor(curr) {
+    curr = curr.right;
+    while (curr != null && curr.left != null) {
+      curr = curr.left;
+    }
+    return curr;
+  }
+
+  deleteItem(value, currNode = this.root) {
+    if (currNode == null) {
+      return currNode;
+    }
+    if (value < currNode.data) {
+      currNode.left = this.deleteItem(value, currNode.left);
+    } else if (value > currNode.data) {
+      currNode.right = this.deleteItem(value, currNode.right);
+    } else {
+      if (currNode.left == null && currNode.right == null) {
+        return null;
+      }
+      if (currNode.left == null) {
+        return currNode.right;
+      } else if (currNode.right == null) {
+        return currNode.left;
+      }
+      let succ = this.getSuccessor(currNode);
+      currNode.data = succ.data;
+      currNode.right = this.deleteItem(succ.data, currNode.right);
+    }
+    return currNode;
+  }
 }
 
 let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
@@ -49,5 +81,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-bst.insert(10);
+bst.deleteItem(67);
 prettyPrint(node);
