@@ -74,6 +74,25 @@ class Tree {
     }
     return currNode;
   }
+
+  levelOrder(callback) {
+    if (callback == null) throw new Error("Callback is required!");
+    
+    let node = this.root;
+    let queue = [node];
+    let array = [];
+
+    while (queue.length > 0) {
+      let current = queue[0];
+      callback(current);
+      array.push(current.data);
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+      queue.shift();
+    }
+
+    return array;
+  }
 }
 
 let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
@@ -92,4 +111,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
+bst.levelOrder(console.log);
 prettyPrint(node);
