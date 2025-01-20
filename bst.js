@@ -93,6 +93,36 @@ class Tree {
 
     return array;
   }
+
+  inOrder(callback, currNode = this.root) {
+    if (callback == null) throw new Error("Callback is required!");
+
+    if (currNode) {
+      this.inOrder(callback, currNode.left);
+      callback(currNode);
+      this.inOrder(callback, currNode.right);
+    }
+  }
+
+  preOrder(callback, currNode = this.root) {
+    if (callback == null) throw new Error("Callback is required!");
+
+    if (currNode) {
+      callback(currNode);
+      this.preOrder(callback, currNode.left);
+      this.preOrder(callback, currNode.right);
+    }
+  }
+
+  postOrder(callback, currNode = this.root) {
+    if (callback == null) throw new Error("Callback is required!");
+
+    if (currNode) {
+      this.postOrder(callback, currNode.left);
+      this.postOrder(callback, currNode.right);
+      callback(currNode);
+    }
+  }
 }
 
 let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
@@ -111,5 +141,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-bst.levelOrder(console.log);
 prettyPrint(node);
