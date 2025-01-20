@@ -123,6 +123,18 @@ class Tree {
       callback(currNode);
     }
   }
+
+  height(currNode) {
+    if (currNode == null) {
+      return -1;
+    }
+
+    if (this.height(currNode.left) > this.height(currNode.right)) {
+      return this.height(currNode.left) + 1;
+    } else {
+      return this.height(currNode.right) + 1;
+    }
+  }
 }
 
 let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
