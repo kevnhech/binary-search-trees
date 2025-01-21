@@ -153,6 +153,19 @@ class Tree {
 
     return dist;
   }
+
+  isBalanced(node = this.root) {
+    let left = this.height(node.left) + 1;
+    let right = this.height(node.right) + 1;
+
+    if (left >= right) {
+      var dif = left - right;
+    } else {
+      var dif = right - left;
+    }
+
+    return dif <= 1;
+  }
 }
 
 let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
@@ -171,5 +184,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-console.log(bst.depth(node.left));
+console.log(bst.isBalanced());
 prettyPrint(node);
