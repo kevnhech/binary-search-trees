@@ -135,6 +135,24 @@ class Tree {
       return this.height(currNode.right) + 1;
     }
   }
+
+  depth(node, root = this.root, dist = 0) {
+    if (node == null) {
+      return -1;
+    }
+
+    if (root == node) {
+      return dist;
+    }
+
+    if (node.data < root.data) {
+      dist = this.depth(node, root.left, dist + 1)
+    } else {
+      dist = this.depth(node, root.right, dist + 1);
+    }
+
+    return dist;
+  }
 }
 
 let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
@@ -153,4 +171,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
+console.log(bst.depth(node.left));
 prettyPrint(node);
