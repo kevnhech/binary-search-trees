@@ -192,4 +192,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-export { Tree, prettyPrint };
+export { Tree };
